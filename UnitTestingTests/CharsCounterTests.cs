@@ -53,7 +53,7 @@ namespace UnitTesting.Tests
 
         [TestMethod()]
         [DynamicData(nameof(DifferentCharsData))]
-        public void CountDifferentChars_ShouldReturnCorrectNumberOfRepeatedChars(string str, int expected)
+        public void CountDifferentChars_ShouldReturnCorrectNumberOfDifferentChars(string str, int expected)
         {
             //Arrange
             var charsCounter = this.CharsCountersFactory();
@@ -67,7 +67,7 @@ namespace UnitTesting.Tests
 
         [TestMethod()]
         [DynamicData(nameof(SameCharsData))]
-        public void CountSameChars_ShouldReturnCorrectNumberOfDifferentChars(string str, int expected)
+        public void CountSameChars_ShouldReturnCorrectNumberOfRepeatedChars(string str, int expected)
         {
             //Arrange
             var charsCounter = this.CharsCountersFactory();
@@ -95,6 +95,34 @@ namespace UnitTesting.Tests
 
         [TestMethod()]
         [DataRow(null)]
+        public void CountDifferentChars_ShouldThrowArgumentNullException(string str)
+        {
+            //Arrange
+            var charsCounter = this.CharsCountersFactory();
+
+            //Act
+            Action action = () => charsCounter.CountDifferentChars(str);
+
+            //Assert
+            Assert.ThrowsException<ArgumentNullException>(action);
+        }
+
+        [TestMethod()]
+        [DataRow(null)]
+        public void CountSameChars_ShouldThrowArgumentNullException(string str)
+        {
+            //Arrange
+            var charsCounter = this.CharsCountersFactory();
+
+            //Act
+            Action action = () => charsCounter.CountSameChars(str);
+
+            //Assert
+            Assert.ThrowsException<ArgumentNullException>(action);
+        }
+
+        [TestMethod()]
+        [DataRow(null)]
         public void CountSameDigits_ShouldThrowArgumentNullException(string str)
         {
             //Arrange
@@ -105,6 +133,34 @@ namespace UnitTesting.Tests
 
             //Assert
             Assert.ThrowsException<ArgumentNullException>(action);
+        }
+
+        [TestMethod]
+        [DataRow("")]
+        public void CountDifferentChars_ShouldThrowArgumentException(string str)
+        {
+            //Arrange
+            var charsCounter = this.CharsCountersFactory();
+
+            //Act
+            Action action = () => charsCounter.CountDifferentChars(str);
+
+            //Assert
+            Assert.ThrowsException<ArgumentException>(action);
+        }
+
+        [TestMethod]
+        [DataRow("")]
+        public void CountSameChars_ShouldThrowArgumentException(string str)
+        {
+            //Arrange
+            var charsCounter = this.CharsCountersFactory();
+
+            //Act
+            Action action = () => charsCounter.CountSameChars(str);
+
+            //Assert
+            Assert.ThrowsException<ArgumentException>(action);
         }
 
         [TestMethod]

@@ -7,6 +7,16 @@ namespace UnitTesting
     {
         public int CountDifferentChars(string str)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (str == string.Empty)
+            {
+                throw new ArgumentException($"{nameof(str)} can't be empty", nameof(str));
+            }
+
             int counter = 1;
             List<int> maximumLength = new List<int>();
 
@@ -30,6 +40,16 @@ namespace UnitTesting
 
         public int CountSameChars(string str)
         {
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (str == string.Empty)
+            {
+                throw new ArgumentException($"{nameof(str)} can't be empty", nameof(str));
+            }
+
             int counter = 1;
             List<int> maximumLength = new List<int>();
 
