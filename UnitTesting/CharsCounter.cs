@@ -1,24 +1,16 @@
-﻿using System.Data;
-using System.Reflection;
-
-namespace UnitTesting
+﻿namespace UnitTesting
 {
     public class CharsCounter
     {
         public int CountDifferentChars(string str)
         {
-            if (str is null)
+            if (string.IsNullOrEmpty(str))
             {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            if (str == string.Empty)
-            {
-                throw new ArgumentException($"{nameof(str)} can't be empty", nameof(str));
+                throw new ArgumentException("String is null or empty!", nameof(str));
             }
 
             int counter = 1;
-            List<int> maximumLength = new List<int>();
+            List<int> maximumLengths = new List<int>();
 
             for (int i = 0; i < str.Length - 1; i++)
             {
@@ -28,30 +20,25 @@ namespace UnitTesting
                 }
                 else
                 {
-                    maximumLength.Add(counter);
+                    maximumLengths.Add(counter);
                     counter = 1;
                 }
             }
 
-            maximumLength.Add(counter);
+            maximumLengths.Add(counter);
 
-            return maximumLength.Max();
+            return maximumLengths.Max();
         }
 
         public int CountSameChars(string str)
         {
-            if (str is null)
+            if (string.IsNullOrEmpty(str))
             {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            if (str == string.Empty)
-            {
-                throw new ArgumentException($"{nameof(str)} can't be empty", nameof(str));
+                throw new ArgumentException("String is null or empty!", nameof(str));
             }
 
             int counter = 1;
-            List<int> maximumLength = new List<int>();
+            List<int> maximumLengths = new List<int>();
 
             for (int i = 0; i < str.Length - 1; i++)
             {
@@ -61,36 +48,31 @@ namespace UnitTesting
                 }
                 else
                 {
-                    maximumLength.Add(counter);
+                    maximumLengths.Add(counter);
                     counter = 1;
                 }
             }
 
-            maximumLength.Add(counter);
+            maximumLengths.Add(counter);
 
-            return maximumLength.Max();
+            return maximumLengths.Max();
         }
 
         public int CountSameDigits(string str)
         {
             int counter = 1;
 
-            if (str is null)
+            if (string.IsNullOrEmpty(str))
             {
-                throw new ArgumentNullException(nameof(str));
-            }
-
-            if (str == string.Empty)
-            {
-                throw new ArgumentException($"{nameof(str)} cannot be empty", nameof(str));
+                throw new ArgumentException("String is null or empty!", nameof(str));
             }
 
             if (!str.Any(c => char.IsDigit(c)))
             {
-                throw new ArgumentException($"{nameof(str)} must contain at least one digit!", nameof(str));
+                throw new ArgumentException($"String must contain at least one digit!", nameof(str));
             }
 
-            List<int> maximumLength = new List<int>();
+            List<int> maximumLengths = new List<int>();
 
             for (int i = 0; i < str.Length - 1; i++)
             {
@@ -102,14 +84,14 @@ namespace UnitTesting
                 }
                 else
                 {
-                    maximumLength.Add(counter);
+                    maximumLengths.Add(counter);
                     counter = 1;
                 }
             }
 
-            maximumLength.Add(counter);
+            maximumLengths.Add(counter);
 
-            return maximumLength.Max();
+            return maximumLengths.Max();
         }
     }
 }
